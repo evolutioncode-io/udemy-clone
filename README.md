@@ -46,3 +46,5 @@ yarn add @fortawesome/fontawesome-free
 rails generate simple_form:install --bootstrap
 
 rails g scaffold Course title:string description:text
+
+rails action_text:install

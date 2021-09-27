@@ -1,6 +1,9 @@
 %p#notice= notice
-%h1 Courses
-%table
+%h1
+  Courses:
+  = @courses.count
+
+%table.table
   %thead
     %tr
       %th Title
