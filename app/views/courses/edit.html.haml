@@ -1,5 +1,9 @@
-%h1 Editing Course
-= render 'form', course: @course
-= link_to 'Show', @course
-|
+.card
+  .card-header
+    %h1 Edit course
+  .card-body
+    = render 'form', course: @course
+
+= link_to 'Show', @courses
+\|
 = link_to 'Back', courses_path
