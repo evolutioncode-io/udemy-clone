@@ -14,7 +14,7 @@ git remote add origin https://github.com/evolutioncode-io/???.git
 git branch -M main
 git push -u origin main
 
----
+----
 EDITOR=vim rails credentials:edit
 add secret password / tokens
 <ESC> wq
