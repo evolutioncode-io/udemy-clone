@@ -18,12 +18,19 @@ git push -u origin main
 EDITOR=vim rails credentials:edit
 add secret password / tokens
 <ESC> wq
+Stripe.api_key = Rails.application.credentials[:stripe][:secret]
 ---
 heroku create
 heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 git push heroku main
 heroku run rails db:migrate
 heroku run rake db:seed
+
+bundle lock --add-platform ruby  
+bundle lock --add-platform x86_64-linux 
+bundle install
+git add .
+git commit -m "Bundler fix"
 
 heroku pg:reset DATABASE_URL  << para borrar los datos de las tablas en heroku
 ---

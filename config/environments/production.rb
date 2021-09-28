@@ -3,6 +3,19 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.default_url_options = {host: "//localhost:3000", protocol: "http:"}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.rdelivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'email-smtp.us-east-1.amazonaws.com',
+    user_name: Rails.application.credentials[:amazon][:username],
+    password: Rails.application.credentials[:amazon][:password],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
