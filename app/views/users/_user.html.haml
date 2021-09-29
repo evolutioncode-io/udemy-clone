@@ -1,26 +1,30 @@
-.card 
-  .card-header 
-    .fa.fa-user 
+.card
+  .card-header
+    .fa.fa-user
     = user.email
-  .card-footer 
+  .card-footer
     Signed up
     = time_ago_in_words(user.created_at)
     ago
   .card-footer
-    = 'sign_in_count: '.humanize
+    %b= 'sign_in_count'.humanize + ":"
     = user.sign_in_count
-    .row 
-    = 'current_sign_in_ip: '.humanize
-    = user.current_sign_in_ip
-    .row 
-    = 'current_sign_in_at: '.humanize
+    .row
+    %b= 'current_sign_in_at'.humanize + ":"
     = user.current_sign_in_at
-    .row 
-    = 'last_sign_in_ip: '.humanize
+    .row
+    %b= 'last_sign_in_at'.humanize + ":"
+    = user.last_sign_in_at
+    .row
+    %b= 'current_sign_in_ip'.humanize + ":"
+    = user.current_sign_in_ip
+    .row
+    %b= 'last_sign_in_ip'.humanize + ":"
     = user.last_sign_in_ip
-  .card-footer 
+  .card-footer
     Confirmed email?
     - if user.confirmed_at.present?
-      .badge.bg-success Yes
+      .badge.badge-success Yes
     - else
-      .badge.bg-danger No
+      .badge.badge-danger No
+      

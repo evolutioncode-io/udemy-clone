@@ -2,6 +2,19 @@
   Courses:
   = @courses.count
 
-.card-columns 
-  - @courses.each do |course|
-    = render 'courses/course', course: course
+.row 
+  .col-md-2 
+  .form-inline
+  = search_form_for @q do |f|
+    = f.search_field :title_cont, placeholder: 'title', class: 'form-control'
+    = f.search_field :short_description_cont, placeholder: 'sshort descriptiont'
+    = f.search_field :language_cont, placeholder: 'language'
+    = f.search_field :level_cont, placeholder: 'level'
+    = f.search_field :price_eq, placeholder: 'price'
+    = f.submit
+  .ml-2
+  = link_to 'refresh', users_path
+  .col-md-10 
+    .card-columns 
+      - @courses.each do |course|
+        = render 'courses/course', course: course
