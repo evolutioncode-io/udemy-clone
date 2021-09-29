@@ -1,17 +1,19 @@
-= form_with(model: course) do |form|
-  - if course.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(course.errors.count, "error")
-        prohibited this course from being saved:
-      %ul
-        - course.errors.each do |error|
-          %li= error.full_message
-  .field
-    = form.label :title
-    = form.text_field :title
-  .field
-    = form.label :description
-    = form.rich_text_area :description
-  .actions
-    = form.submit
+.container
+  -# frozen_string_literal: true
+  = simple_form_for(@course) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  
+    .form
+      = f.input :title
+      = f.label :description
+      = f.rich_text_area :description
+      %small= f.error :description, class: 'text-danger'
+      = f.input :short_description
+      = f.input :language, collection: [ "English", "Polish", "Russian"]
+      = f.input :level, collection: [ "Beginner", "Intermediate", "Advanced"]
+      = f.input :price
+  
+  
+    .form-actions
+      = f.button :submit
