@@ -76,3 +76,7 @@ rails g rolify Role User
 rails g pundit:install 
 rails g pundit:policy course
 rails g pundit:policy user 
+
+rails g migration AddSlugToUser slug:uniq  
+rails g scaffold lessons title content:text course:references
+rails g migration AddSlugToLessons slug:uniq
