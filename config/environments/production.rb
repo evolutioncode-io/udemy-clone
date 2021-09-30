@@ -21,8 +21,8 @@ Rails.application.configure do
     email: {
       deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
       email_prefix: "[PREFIX] ",
-      sender_address: %("corsego error" <support@evcode.co>),
-      exception_recipients: %w[yshmarov@gmail.com]
+      sender_address: %("Udemy-clone error" <support@evcode.co>),
+      exception_recipients: %w[support@evcode.co]
     }
 
   # Code is not reloaded between requests.
