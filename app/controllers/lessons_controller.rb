@@ -26,16 +26,14 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
+    @lesson.course_id = @course.id
 
-    respond_to do |format|
+    authorize @lesson
       if @lesson.save
-        format.html { redirect_to @lesson, notice: "Lesson was successfully created." }
-        format.json { render :show, status: :created, location: @lesson }
+        redirect_to  course_lesson_path(@course, @lesson, anchor: 'current_lesson'), notice: "Lesson was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /lessons/1 or /lessons/1.json
@@ -57,7 +55,7 @@ class LessonsController < ApplicationController
     authorize @lesson
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: "Lesson was successfully destroyed." }
+      format.html { redirect_to course_path(@course), notice: "Lesson was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -71,6 +69,6 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content, :course_id)
+      params.require(:lesson).permit(:title, :content)
     end
 end

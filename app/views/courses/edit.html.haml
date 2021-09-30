@@ -3,7 +3,7 @@
     %h1 Edit course
   .card-body
     = render 'form', course: @course
-
-= link_to 'Show', @courses
-\|
-= link_to 'Back', courses_path
+  .card-footer
+    = link_to 'Show', @courses
+    \|
+    = link_to 'Back', courses_path
