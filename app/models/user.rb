@@ -10,6 +10,9 @@ class User < ApplicationRecord
     email
   end
 
+  extend FriendlyId
+  friendly_id :email, use: :slugged
+
   def username
     self.email.split(/@/).first
   end

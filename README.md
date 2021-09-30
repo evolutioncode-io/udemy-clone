@@ -48,10 +48,31 @@ INSTALAR BOOTSTRAP
  echo > app/javascript/stylesheets/application.scss
  https://blog.corsego.com/rails-6-install-bootstrap-with-webpacker-tldr
 
+
+
+
+rails new udemy-clone -d postgresql      
+yarn add jquery popper.js bootstrap   
+mkdir app/javascript/stylesheets 
+echo > app/javascript/stylesheets/application.scss 
+rails generate simple_form:install --bootstrap   
+rails g scaffold Course title:string description:text 
+yarn add bootstrap jquery popper.js   
+yarn add @popperjs/core  
 yarn add @fortawesome/fontawesome-free
-
-rails generate simple_form:install --bootstrap
-
-rails g scaffold Course title:string description:text
-
-rails action_text:install
+rails action_text:install  
+rails generate devise:install  
+rails generate devise User  
+rails g migration AddUserToCourses user:belongs_to
+rails generate simple_form:install     
+rails g migration AddSlugToCourses slug:uniq  
+rails generate friendly_id    
+rails g migration add_trackablecols_to_devise   
+rails g migration add_confirmable_to_devise    
+rails g migration add_fields_to_courses short_description:text language:string level:string price:integer
+bin/rails db:environment:set RAILS_ENV=development
+rails g public_activity:migration 
+rails g rolify Role User 
+rails g pundit:install 
+rails g pundit:policy course
+rails g pundit:policy user 
