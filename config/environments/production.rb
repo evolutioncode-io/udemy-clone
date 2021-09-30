@@ -25,7 +25,6 @@ Rails.application.configure do
       exception_recipients: %w[yshmarov@gmail.com]
     }
 
-  Rails.aoo
   # Code is not reloaded between requests.
   config.cache_classes = true
 
