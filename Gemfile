@@ -40,3 +40,4 @@ gem 'ransack'
 gem 'public_activity'
 gem 'rolify'
 gem "pundit"
+gem 'exception_notification'
