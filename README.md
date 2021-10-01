@@ -140,7 +140,26 @@ RAMSACK  .. para poder hacer busqueda dentro de enrollmets
           /User
         %th
 
+get :purchased, on: :collection ??
 
+      2.10.2 Adding Collection Routes
+      A collection route doesn't require an ID because it acts on a collection of objects
+      :collection creates path with the pattern /:controller/:your_method
+      To add a route to the collection, use a collection block:
+
+      resources :photos do
+        collection do
+          get 'search'
+        end
+      end
+
+      This will enable Rails to recognize paths such as /photos/search with GET, and route to the search action of PhotosController. It will also create the search_photos_url and search_photos_path route helpers.
+
+      Just as with member routes, you can pass :on to a route:
+
+      resources :photos do
+        get 'search', on: :collection
+      end
 
 
 
