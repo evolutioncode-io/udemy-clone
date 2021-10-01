@@ -2,21 +2,20 @@ class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy ]
   before_action :set_course, only: [:new, :create]
 
-  # GET /enrollments or /enrollments.json
   def index
+    authorize @enrollments
     @enrollments = Enrollment.all
   end
 
-  # GET /enrollments/1 or /enrollments/1.json
   def show
   end
-
 
   def new
     @enrollment = Enrollment.new
   end
 
   def edit
+    authorize @enrollments
   end
 
   def create
@@ -30,6 +29,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def update
+    authorize @enrollments
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to @enrollment, notice: "Enrollment was successfully updated." }
@@ -42,6 +42,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
+    authorize @enrollments
     @enrollment.destroy
     respond_to do |format|
       format.html { redirect_to enrollments_url, notice: "Enrollment was successfully destroyed." }
