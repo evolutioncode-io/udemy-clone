@@ -111,8 +111,35 @@ FRINDLY_ID  a enrollments
    friendly_id :to_s, use: :slugged
    y para cambiar los datos que ya existian .. se va a la consola Rails c y se escribe: Enrollment.find_each(&:save)
 
-RAMSACK
-   
+RAMSACK  .. para poder hacer busqueda dentro de enrollmets
+    enrollment controller
+        se cambia de :
+            def index
+              @pagy, @enrollments = pagy(Enrollment.all)
+              authorize @enrollments
+            end
+            a
+            def index
+              @q = Enrollment.ransack(params[:q])
+              @pagy, @enrollments = pagy(@q.result.includes(:user))
+            end
+    y en enrollment index para ver y pedir los filtros:
+        = search_form_for @q do |f|
+        = f.search_field :user_email_cont, placeholder: 'user email'
+        = f.search_field :course_title_cont, placeholder: 'course title'
+        = f.search_field :price_eq, placeholder: 'price'
+        = f.search_field :rating_eq, placeholder: 'rating'
+        = f.search_field :review_cont, placeholder: 'review'
+        = f.submit
+      = link_to 'refresh', enrollments_path
+
+    y en los datos:
+        %th
+          = sort_link(@q, :user_email)
+          /.fa.fa-user
+          /User
+        %th
+
 
 
 
