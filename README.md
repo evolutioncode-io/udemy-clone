@@ -96,6 +96,23 @@ USAR PAGY para paginar users
         require 'pagy/extras/bootstrap'
         Pagy::VARS[:items]  = 10  
 
+FRINDLY_ID  a enrollments
+    rails g migration AddSlugToEnrollments slug:uniq
+    rails db:migrate
+    en el enrollment controller ... cambia de 
+        def set_enrollment
+          @enrollment = Enrollment.find(params[:id])
+        end
+
+        @enrollment = Enrollment.friendly.find(params[:id])
+
+    y en el modelo de enrollment.rb se agrega
+       extend FriendlyId
+   friendly_id :to_s, use: :slugged
+   y para cambiar los datos que ya existian .. se va a la consola Rails c y se escribe: Enrollment.find_each(&:save)
+
+RAMSACK
+   
 
 
 
