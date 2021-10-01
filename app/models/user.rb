@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   rolify
 
+  has_many :courses
+  has_many :enrollments
+
   def to_s
     email
   end
@@ -16,8 +19,6 @@ class User < ApplicationRecord
   def username
     self.email.split(/@/).first
   end
-
-  has_many :courses
 
   after_create :assign_default_role
 
