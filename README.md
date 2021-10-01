@@ -49,6 +49,41 @@ INSTALAR BOOTSTRAP
  https://blog.corsego.com/rails-6-install-bootstrap-with-webpacker-tldr
 
 
+GEM PUNDIT
+En el folder de policies se crea un file con el nombre del modelo  en este ejemplo enrollment :  enrollment_policy.rb
+      class EnrollmentPolicy < ApplicationPolicy
+        class Scope < Scope
+          def resolve
+            scope.all
+          end
+        end
+
+        def index?
+          @user.has_role?(:admin)
+        end
+        
+        def edit?
+          @record.user_id == @user.id
+        end
+
+        def update?
+          @record.user_id == @user.id
+        end
+
+        def destroy?
+          @user.has_role?(:admin)
+        end
+      end
+  
+  Ahora en el enrollments_controller  se coloca la linea authorize @enrollments  que conecta el metodo con la policy
+      def index
+        authorize @enrollments
+        @enrollments = Enrollment.all
+      end
+    
+
+
+
 
 
 rails new udemy-clone -d postgresql      

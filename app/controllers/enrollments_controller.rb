@@ -3,8 +3,8 @@ class EnrollmentsController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
-    authorize @enrollments
     @enrollments = Enrollment.all
+    authorize @enrollments
   end
 
   def show

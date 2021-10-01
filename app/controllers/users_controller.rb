@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true)
-    authorize @user
+    authorize @users
   end 
 
   def show
@@ -14,11 +14,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize @user
+    authorize @users
   end
   
   def update
-    authorize @user
+    authorize @users
     if @user.update(user_params)
       redirect_to users_path, notice: 'User roles were successfully updated.'
     else
