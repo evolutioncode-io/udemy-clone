@@ -86,7 +86,15 @@ HELPERS:  una manera de sacar codigo confuso de las Views y Controller
 
 MODEL SCOPE: Scopes are custom queries that you define inside your Rails models with the scope method. Every scope takes two arguments: A name, which you use to call this scope in your code. A lambda, which implements the query
 
-
+USAR PAGY para paginar users
+    users-controller
+        #@users = @q.result(distinct: true)  << lo anterior que usa ransack para buscar
+        @pagy, @users = pagy(@q.result(distinct: true))
+    users-index
+        != pagy_bootstrap_nav(@pagy)   / al final para ver los botones
+    config/initializers/pagy.rb  >> alla se puede cambiar el numero de items que muestra por pantalla y usar bootstrap
+        require 'pagy/extras/bootstrap'
+        Pagy::VARS[:items]  = 10  
 
 
 
