@@ -82,6 +82,12 @@ En el folder de policies se crea un file con el nombre del modelo  en este ejemp
       end
     
 
+HELPERS:  una manera de sacar codigo confuso de las Views y Controller 
+
+MODEL SCOPE: Scopes are custom queries that you define inside your Rails models with the scope method. Every scope takes two arguments: A name, which you use to call this scope in your code. A lambda, which implements the query
+
+
+
 
 
 
