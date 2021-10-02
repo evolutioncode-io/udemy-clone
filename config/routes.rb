@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :enrollments
+  resources :enrollments do
+    get :my_students, on: :collection
+  end
   devise_for :users
   resources :courses do
     get :pending_review, on: :collection
