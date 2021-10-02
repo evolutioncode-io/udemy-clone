@@ -5,6 +5,7 @@ class EnrollmentsController < ApplicationController
   def index
     # @enrollments = Enrollment.all
     # @pagy, @enrollments = pagy(Enrollment.all)
+    @ransack_path = enrollments_path
     @q = Enrollment.ransack(params[:q])
     @pagy, @enrollments = pagy(@q.result.includes(:user))
 
