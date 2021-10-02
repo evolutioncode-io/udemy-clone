@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
-  # GET /courses or /courses.json
   def index
     #if params[:title]
     #  @courses = Course.where('title ILIKE ?', "%#{params[:title]}%") #case-insensitive
@@ -17,23 +16,37 @@ class CoursesController < ApplicationController
 
   end
 
-  # GET /courses/1 or /courses/1.json
+  def purchased
+    @courses = Course.joins(:enrollments).where(enrollments: {user: current_user})
+    # @pagy, @courses = pagy(Course.joins(:enrollments).where(enrollments: {user: current_user}))
+    render 'index'
+  end
+
+  def pending_review
+    @pagy, @courses = pagy(Course.joins(:enrollments).merge(Enrollment.pending_review.where(user: current_user)))
+    render 'index'
+  end
+
+  def created
+    # @ransack_path = created_courses_path
+    # @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_search)
+    # @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render 'index'
+  end
+
   def show
     @lessons = @course.lessons
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
     authorize @course
   end
 
-  # GET /courses/1/edit
   def edit
     authorize @course
   end
 
-  # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
     authorize @course

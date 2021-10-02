@@ -39,9 +39,12 @@
                 .fa.fa-graduation-cap
                 Learn
               %ul.dropdown-menu{"aria-labelledby" => "studentDropdown"}
-                = link_to new_course_path, class: "dropdown-item" do
-                  .fa.fa-plus
-                  New Course
+                = link_to purchased_courses_path, class: "dropdown-item" do
+                  .fa.fa-graduation-cap
+                  Purchased Course
+                = link_to pending_review_courses_path, class: "dropdown-item" do
+                  .fa.fa-star
+                  Pending Review
           - if current_user.has_role?(:teacher)
             %li.nav-item.dropdown
               %a#teacherDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -74,7 +77,7 @@
           -#     Activity
           %li.nav-item.dropdown
             %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-              Admin
+              = current_user.username
             %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
               = link_to edit_user_registration_path, class: "dropdown-item" do
                 .fa.fa-cog

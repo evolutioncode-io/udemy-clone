@@ -140,7 +140,32 @@ RAMSACK  .. para poder hacer busqueda dentro de enrollmets
           /User
         %th
 
+get :purchased, on: :collection ??
 
+      2.10.2 Adding Collection Routes
+      A collection route doesn't require an ID because it acts on a collection of objects
+      :collection creates path with the pattern /:controller/:your_method
+      To add a route to the collection, use a collection block:
+
+      resources :photos do
+        collection do
+          get 'search'
+        end
+      end
+
+      This will enable Rails to recognize paths such as /photos/search with GET, and route to the search action of PhotosController. It will also create the search_photos_url and search_photos_path route helpers.
+
+      Just as with member routes, you can pass :on to a route:
+
+      resources :photos do
+        get 'search', on: :collection
+      end
+
+scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
+
+  scope:  Scope defines where in a program a variable is accessible. Ruby has four types of variable scope, local, global, instance and class. In addition, Ruby has one constant type. ... These are nil which is assigned to uninitialized variables and self which refers to the currently executing object.
+
+  lambda:  Ruby lambdas allow you to encapsulate logic and data in an eminently portable variable. A lambda function can be passed to object methods, stored in data structures, and executed when needed. Lambda functions occupy a sweet spot between normal functions and objects.  Aqui el -> es la forma de crear un lambda 
 
 
 
@@ -173,3 +198,4 @@ rails g pundit:policy user
 rails g migration AddSlugToUser slug:uniq  
 rails g scaffold lessons title content:text course:references
 rails g migration AddSlugToLessons slug:uniq
+
