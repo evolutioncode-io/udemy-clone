@@ -29,9 +29,9 @@ class CoursesController < ApplicationController
   end
 
   def created
-    # @ransack_path = created_courses_path
-    # @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_search)
-    # @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    @ransack_path = created_courses_path
+    @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_search)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
     render 'index'
   end
 
