@@ -19,7 +19,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def edit
-    authorize @enrollment
+    authorize @enrollments
   end
 
   def create
@@ -33,7 +33,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def update
-    authorize @enrollment
+    authorize @enrollments
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to @enrollment, notice: "Enrollment was successfully updated." }
@@ -46,7 +46,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
-    authorize @enrollment
+    authorize @enrollments
     @enrollment.destroy
     respond_to do |format|
       format.html { redirect_to enrollments_url, notice: "Enrollment was successfully destroyed." }

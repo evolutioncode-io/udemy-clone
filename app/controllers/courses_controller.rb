@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
+  # GET /courses or /courses.json
   def index
     #if params[:title]
     #  @courses = Course.where('title ILIKE ?', "%#{params[:title]}%") #case-insensitive
@@ -38,15 +39,18 @@ class CoursesController < ApplicationController
     @lessons = @course.lessons
   end
 
+  # GET /courses/new
   def new
     @course = Course.new
     authorize @course
   end
 
+  # GET /courses/1/edit
   def edit
     authorize @course
   end
 
+  # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
     authorize @course
