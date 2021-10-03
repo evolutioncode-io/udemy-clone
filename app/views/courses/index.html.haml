@@ -9,8 +9,8 @@
     .fa.fa-graduation-cap
     = action_name.humanize
     courses
-  .badge.bg-info
-    = @courses.count
+    .badge.bg-info
+      = @courses.count
 %p
 
 
@@ -29,7 +29,15 @@
       = f.search_field :price_eq, placeholder: 'price', class: 'form-control'
       = f.label :Teacher
       = f.search_field :user_email_cont, placeholder: 'email', class: 'form-control'
-      = f.submit
+      = sort_link(@ransack_courses, :price)
+      .row
+      = sort_link(@ransack_courses, :average_rating, "Top Rated")
+      .row
+      = sort_link(@ransack_courses, :created_at, "Fresh")
+      .row
+      = sort_link(@ransack_courses, :enrollments_count, "Most Popular")
+      .row
+      = f.button :submit, class: 'btn btn-primary btn-sm'
     = link_to 'refresh', @ransack_path
     
   .col-md-10 
