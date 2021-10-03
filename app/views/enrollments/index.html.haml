@@ -1,11 +1,14 @@
 - content_for :title do
   UdemyC
   \|
-  Enrollments
+  = action_name.humanize
+  enrollments
 
 %h3
   .text-center
-    Enrollments
+    .fa.fa-lock-open
+    = action_name.humanize
+    enrollments
     .badge.bg-info
       = @enrollments.count
 %p

@@ -1,4 +1,5 @@
- UdemyC
+- content_for :title do
+  Corsego 
   \/
   Course
   = @course.title
@@ -9,13 +10,13 @@
 \/
 = link_to @course.title, course_path(@course)
 \/
-New
+new lesson
 %p
 
 .card
   .card-header
     %h3
-      .fa.far-check-square
+      .far.fa-check-square
       New lesson
   .card-body
     = render 'form'

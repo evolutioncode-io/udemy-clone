@@ -1,13 +1,16 @@
 - content_for :title do
   UdemyC
   \|
-  All courses
+  = action_name.humanize
+  courses
 
 %h3
   .text-center
-    Courses
-    .badge.bg-info
-      = @courses.count
+    .fa.fa-graduation-cap
+    = action_name.humanize
+    courses
+  .badge.bg-info
+    = @courses.count
 %p
 
 
