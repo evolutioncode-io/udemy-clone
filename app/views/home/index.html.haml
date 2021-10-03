@@ -52,14 +52,14 @@
   .fa.fa-user-graduate
   Continue Learning
 .card-group
-  - @purchased_courses.each do |course|
+  - @purchased.each do |course|
     = render 'courses/course', course: course
 %hr
 %h2
   .fa.fa-chart-line
   Popular courses
 .card-group
-  - @popular_courses.each do |course|
+  - @popular.each do |course|
     = render 'courses/course', course: course
 
 %hr
@@ -67,7 +67,7 @@
   .fa.fa-star
   Top rated courses
 .card-group
-  - @top_rated_courses.each do |course|
+  - @top_rated.each do |course|
     = render 'courses/course', course: course
 
 %hr
@@ -75,7 +75,7 @@
   .fa.fa-clock
   Latest courses
 .card-group
-  - @latest_couses.each do |course|
+  - @latest.each do |course|
     = render 'courses/course', course: course
 
 %hr
