@@ -1,28 +1,24 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: %i[ show edit update destroy ]
 
-  # GET /lessons or /lessons.json
   def index
     @lessons = Lesson.all
   end
 
-  # GET /lessons/1 or /lessons/1.json
   def show
     authorize @lesson
+    current_user.view_lesson(@lesson)
   end
 
-  # GET /lessons/new
   def new
     @lesson = Lesson.new
     @course = Course.friendly.find(params[:course_id])
   end
 
-  # GET /lessons/1/edit
   def edit
     authorize @lesson
   end
 
-  # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
     @course = Course.friendly.find(params[:course_id])
@@ -36,7 +32,6 @@ class LessonsController < ApplicationController
       end
   end
 
-  # PATCH/PUT /lessons/1 or /lessons/1.json
   def update
     authorize @lesson
     respond_to do |format|
@@ -50,7 +45,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # DELETE /lessons/1 or /lessons/1.json
   def destroy
     authorize @lesson
     @lesson.destroy
@@ -61,13 +55,11 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @course = Course.friendly.find(params[:course_id])
       @lesson = Lesson.friendly.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def lesson_params
       params.require(:lesson).permit(:title, :content)
     end
