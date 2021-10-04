@@ -44,3 +44,4 @@ gem 'exception_notification'
 gem 'pagy', '~> 3.5'
 gem "chartkick"
 gem 'groupdate'
+gem 'rails-erd', group: :development
