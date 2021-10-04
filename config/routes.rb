@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :enrollments, only: [:new, :create]
   end
   resources :users, only: [:index, :edit, :show, :update]
+  root 'home#index'
   get 'home/index'
   get 'activity', to: 'home#activity'
-  root 'home#index'
+  get 'analytics', to: 'home#analytics'
+  
 end

@@ -5,10 +5,25 @@ class HomeController < ApplicationController
     @latest = Course.latest
     @top_rated = Course.top_rated
     @popular = Course.popular
-    @purchased = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)
+    @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)
+  end
+  
+  def activity
+    if current_user.has_role?(:admin)
+      @activities = PublicActivity::Activity.all
+    else
+      redirect_to root_path, alert: "You are not authorized to access this page"
+    end
   end
 
-  def activity
-    @activities = PublicActivity::Activity.all 
+  def analytics
+    if current_user.has_role?(:admin)
+      @users = User.all
+      @enrollments = Enrollment.all
+      @courses = Course.all
+    else
+      redirect_to root_path, alert: "You are not authorized to access this page"
+    end
   end
+
 end

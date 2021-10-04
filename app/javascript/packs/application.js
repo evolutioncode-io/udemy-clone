@@ -19,5 +19,10 @@ ActiveStorage.start()
 
 import "@fortawesome/fontawesome-free/css/all"
 
+import "chartkick/chart.js"
+
 require("trix")
 require("@rails/actiontext")
+
+// require("chartkick")
+// require("chart.js")
