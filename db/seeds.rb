@@ -14,7 +14,7 @@ PublicActivity.enabled = false
     user_id: User.last.id,
     # short_description: Faker::Quote.famous_last_words,
     short_description: Faker::Quote.most_interesting_man_in_the_world,
-    language: Faker::ProgrammingLanguage.name,
+    language: 'English',
     level: 'Beginner',
     price: Faker::Number.between(from: 1000, to: 20000)
   }])
