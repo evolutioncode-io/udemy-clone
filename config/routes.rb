@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     get :purchased, on: :collection
     get :created, :unapproved, on: :collection
     member do
-       patch :approve
-       patch :unapprove
+      get :analytics
+      patch :approve
+      patch :unapprove
     end
     resources :lessons
     resources :enrollments, only: [:new, :create]
