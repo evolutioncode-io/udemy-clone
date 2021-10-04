@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :courses do
     get :pending_review, on: :collection
     get :purchased, on: :collection
-    get :created, on: :collection
+    get :created, :unapproved, on: :collection
+    member do
+       patch :approve
+       patch :unapprove
+    end
     resources :lessons
     resources :enrollments, only: [:new, :create]
   end
@@ -15,8 +19,13 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'activity', to: 'home#activity'
   get 'analytics', to: 'home#analytics'
-  get 'charts/users_per_day', to: 'charts#users_per_day'
-  get 'charts/enrollments_per_day', to: 'charts#enrollments_per_day'
-  get 'charts/course_popularity', to: 'charts#course_popularity'
+
+  namespace :charts do
+    get 'users_per_day'
+    get 'enrollments_per_day'
+    get 'course_popularity'
+    get 'money_makers'
+  end
+  
   
 end
