@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   validates :title, :short_description, :language, :price, :level, presence: true
-  validates :description, presence: true, length: { :minimum => 5 }
+  validates :description, presence: true, length: { minimum: 5 }
 
   belongs_to :user, counter_cache: true
   # User.find_each { |user| User.reset_counters(user.id, :courses) }  
@@ -9,7 +9,8 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :restrict_with_error  #esto protege que no se pueda borrar cunado tiene enrollments
   has_many :user_lessons, through: :lessons
 
-  validates :title, uniqueness: true
+  validates :title, uniqueness: true, length: { maximum: 70 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
 
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc)}
@@ -20,7 +21,7 @@ class Course < ApplicationRecord
   scope :unapproved, -> { where(approved: false) }
 
   has_one_attached :avatar
-  validates :avatar, attached: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
+  validates :avatar, presence: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
   
   def to_s
     title

@@ -5,6 +5,7 @@ class Lesson < ApplicationRecord
   has_many :user_lessons, dependent: :nullify
 
   validates :title, :content, :course, presence: true
+  validates :title, uniqueness: true, length: { maximum: 70 }
 
   has_rich_text :content
   
