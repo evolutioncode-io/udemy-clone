@@ -24,6 +24,8 @@ import "chartkick/chart.js"  // yarn add chartkick chart.js
 require("trix")
 require("@rails/actiontext")
 
+import "../trix-editor-overrides"
+
 // require("chartkick")
 // require("chart.js")
 
