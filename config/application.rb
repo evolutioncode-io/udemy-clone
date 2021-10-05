@@ -12,7 +12,14 @@ module UdemyClone
     config.load_defaults 6.1
     config.assets.initialize_on_precompile = false
     # Configuration for the application, engines, and railties goes here.
-    #
+    #video previews for action_text
+    config.after_initialize do
+      ActionText::ContentHelper.allowed_attributes.add 'style'
+      ActionText::ContentHelper.allowed_attributes.add 'controls'
+      ActionText::ContentHelper.allowed_tags.add 'audio'
+      ActionText::ContentHelper.allowed_tags.add 'video'
+      ActionText::ContentHelper.allowed_tags.add 'source'
+    end
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
