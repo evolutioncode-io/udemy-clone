@@ -167,7 +167,7 @@ scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
 
   lambda:  Ruby lambdas allow you to encapsulate logic and data in an eminently portable variable. A lambda function can be passed to object methods, stored in data structures, and executed when needed. Lambda functions occupy a sweet spot between normal functions and objects.  Aqui el -> es la forma de crear un lambda 
 
-
+code to embed youtube:  https://gist.github.com/yshmarov/90377ba51f14df09df03e6442cd7412e
 
 rails new udemy-clone -d postgresql      
 yarn add jquery popper.js bootstrap   
