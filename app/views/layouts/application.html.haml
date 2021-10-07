@@ -6,6 +6,9 @@
     %title
       = content_for?(:title) ? yield(:title) : "Udemy-Clone"
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{description: 'Online Learning and Skill sharing platform'}/
+    %meta{keywords: 'online education, course platform, video tutorials, udemy clone'}/
+    %meta{author: 'Yaroslav Shmarov'}/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
