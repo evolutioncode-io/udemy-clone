@@ -2,6 +2,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    -# = favicon_link_tag 'logo.png'
     %title
       = content_for?(:title) ? yield(:title) : "Udemy-Clone"
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
@@ -10,6 +11,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    -# - if Rails.env.production?
     = render 'layouts/google_analytics'
   %body
     = render 'layouts/header'
@@ -17,5 +19,6 @@
     .container
       %p
       = yield
-      %b
-    = render 'layouts/footer'
+    %br
+    .purple-background.text-light
+      = render 'layouts/footer'
